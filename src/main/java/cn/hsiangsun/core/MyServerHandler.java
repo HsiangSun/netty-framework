@@ -1,13 +1,17 @@
-package cn.hsiangsun;
+package cn.hsiangsun.core;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFutureListener;
+
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.codec.http.*;
 import lombok.extern.slf4j.Slf4j;
+
+import javax.annotation.Resource;
+import javax.ws.rs.Path;
 
 import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
 
@@ -25,6 +29,7 @@ public class MyServerHandler extends ChannelInboundHandlerAdapter {
         if (msg instanceof FullHttpRequest){
             FullHttpRequest req = (FullHttpRequest) msg;//客户端的请求对象
 
+
             if (req.method() == HttpMethod.GET){
                 if(req.uri().equals("/hello")){
                     myResponse(ctx,req,"Hello Netty World!");
@@ -35,8 +40,9 @@ public class MyServerHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
-        //ctx.writeAndFlush(Unpooled.EMPTY_BUFFER).addListener(ChannelFutureListener.CLOSE);
-        ctx.flush();
+        ctx.writeAndFlush(Unpooled.EMPTY_BUFFER).addListener(ChannelFutureListener.CLOSE);
+        log.debug("channel[{}] has closed",ctx.name());
+        //ctx.flush();
     }
 
 
