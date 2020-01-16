@@ -4,7 +4,6 @@ import cn.hsiangsun.annotation.GetMapping;
 import cn.hsiangsun.annotation.RequestMapping;
 import cn.hsiangsun.annotation.ResponseBody;
 import cn.hsiangsun.annotation.RestController;
-import cn.hsiangsun.response.ResponseEntity;
 
 @RestController
 @RequestMapping("/test")
@@ -12,9 +11,16 @@ public class HelloController {
 
     @ResponseBody
     @GetMapping("/hello")
-    public ResponseEntity<String> sayHello(){
+    public String sayHello(){
         System.err.println("我被发现啦！！！！");
-        return ResponseEntity.ok("Hello from Netty");
+        return "HEllo neety from controller ";
+    }
+
+    @ResponseBody
+    @GetMapping("/haha")
+    public String sayHaha(){
+        //System.err.println("我被发现啦！！！！");
+        return "HAHAHHAHAHAHAHAA AWSL";
     }
 
 }

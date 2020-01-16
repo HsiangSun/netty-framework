@@ -1,6 +1,7 @@
 package cn.hsiangsun.mapping;
 
 import cn.hsiangsun.annotation.*;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,9 +23,8 @@ import java.util.jar.JarFile;
  * @author Leo
  * @date 2018/3/16
  */
+@Slf4j
 public final class ControllerFactory {
-
-    private final static Logger logger = LoggerFactory.getLogger(ControllerFactory.class);
 
     /**
      * 注册Mpping
@@ -98,7 +98,7 @@ public final class ControllerFactory {
             try {
                 clazz = Class.forName(className);
             } catch (ClassNotFoundException e) {
-                logger.error("Class not found, {}", className);
+                log.error("Class not found, {}", className);
             }
             if (clazz != null && clazz.getAnnotation(RestController.class) != null) {
                 if (clazz != null) {
@@ -145,7 +145,7 @@ public final class ControllerFactory {
             try {
                 clazz = Class.forName(className);
             } catch (ClassNotFoundException e) {
-                logger.error("Class not found, {}", className);
+                log.error("Class not found, {}", className);
             }
             if (clazz != null && clazz.getAnnotation(RestController.class) != null) {
                 if (clazz != null) {
@@ -162,7 +162,7 @@ public final class ControllerFactory {
      */
     private void registerClass(Class<?> clazz) {
         String className = clazz.getName();
-        logger.info("Registered REST Controller: {}", className);
+        log.info("Registered REST Controller: {}", className);
         ControllerBean bean = new ControllerBean(clazz, clazz.getAnnotation(RestController.class).singleton());
         ControllerMappingParameter.registerBean(className, bean);
 
@@ -176,6 +176,7 @@ public final class ControllerFactory {
             RequestMappingRegister strategy = null;
             // 遍历所有method，生成ControllerMapping并注册。
             if(method.getAnnotation(GetMapping.class) != null) {
+                System.err.println(method.getAnnotation(GetMapping.class));
                 strategy = new GetRequestMappingRegister();
             }/* else if(method.getAnnotation(PostMapping.class) != null) {
                 strategy = new PostMappingRegisterStrategy();
