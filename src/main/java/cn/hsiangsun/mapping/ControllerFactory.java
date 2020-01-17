@@ -163,7 +163,10 @@ public final class ControllerFactory {
     private void registerClass(Class<?> clazz) {
         String className = clazz.getName();
         log.info("Registered REST Controller: {}", className);
+
         ControllerBean bean = new ControllerBean(clazz, clazz.getAnnotation(RestController.class).singleton());
+
+        //注册（类名，bean）
         ControllerMappingParameter.registerBean(className, bean);
 
         String url = null;

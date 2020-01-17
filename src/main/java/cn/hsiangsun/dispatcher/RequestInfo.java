@@ -1,5 +1,6 @@
 package cn.hsiangsun.dispatcher;
 
+import cn.hsiangsun.response.HttpRespond;
 import io.netty.handler.codec.http.FullHttpRequest;
 import io.netty.handler.codec.http.HttpResponse;
 import lombok.Data;
@@ -18,7 +19,7 @@ public final class RequestInfo {
     
     private FullHttpRequest request;
     
-    private HttpResponse response;
+    private HttpRespond response;
     
     private Map<String, Object> parameters = new HashMap<>();
     

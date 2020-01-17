@@ -5,6 +5,8 @@ import io.netty.handler.codec.http.HttpResponse;
 
 /**
  * Http 上下文持有者
+ *
+ * ThreadLocal 只能被当前线程所访问 其他线程不能访问
  * 
  * @author Leo
  * @date 2018/3/16

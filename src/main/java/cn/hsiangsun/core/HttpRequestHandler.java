@@ -24,6 +24,6 @@ public class HttpRequestHandler extends SimpleChannelInboundHandler<FullHttpRequ
     //channel has error
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-        log.error("HttpRequestHandler has error => {}",cause.getMessage());
+        log.error("HttpRequestHandler has error => {}",cause.toString());
     }
 }

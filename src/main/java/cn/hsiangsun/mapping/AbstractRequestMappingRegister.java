@@ -26,9 +26,6 @@ public abstract class AbstractRequestMappingRegister implements RequestMappingRe
         mapping.setClassMethod(method.getName());
         mapping.setJsonResponse(method.getAnnotation(ResponseBody.class) != null);
 
-        //todo delete
-        System.err.println(mapping);
-
         String httpMethod = getHttpMethod();
 
         if (httpMethod != null){
@@ -115,10 +112,10 @@ public abstract class AbstractRequestMappingRegister implements RequestMappingRe
                 }
             }
 
-            ControllerMappingRegistry.getGetMappings().put(clazz.getName(),mapping);
-
-
         }
+
+        System.err.println("url = "+url + " : mapping" + mapping);
+        this.registerMapping(url, mapping);
 
     }
 

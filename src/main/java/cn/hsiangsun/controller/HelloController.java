@@ -11,16 +11,20 @@ public class HelloController {
 
     @ResponseBody
     @GetMapping("/hello")
-    public String sayHello(){
-        System.err.println("我被发现啦！！！！");
+    public String sayHello(String name){
         return "HEllo neety from controller ";
     }
 
     @ResponseBody
     @GetMapping("/haha")
     public String sayHaha(){
-        //System.err.println("我被发现啦！！！！");
         return "HAHAHHAHAHAHAHAA AWSL";
+    }
+
+    @ResponseBody
+    @GetMapping("/demo")
+    public String demo(){
+        return "This is a demo";
     }
 
 }

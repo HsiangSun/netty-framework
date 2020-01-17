@@ -21,6 +21,6 @@ public class GetRequestMappingRegister extends AbstractRequestMappingRegister {
 
     @Override
     void registerMapping(String url, ControllerMapping mapping) {
-        ControllerMappingParameter.getGetMappings().put(url, mapping);
+        ControllerMappingRegistry.getGetMappings().put(url, mapping);
     }
 }
